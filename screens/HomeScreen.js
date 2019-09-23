@@ -16,8 +16,6 @@ export default class HomeScreen extends React.Component {
     };
 
     render() {
-        LayoutAnimation.easeInEaseOut();
-
         return (
             <View style={styles.container}>
                 <Text>Hi {this.state.email}!</Text>
