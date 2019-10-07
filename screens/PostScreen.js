@@ -1,13 +1,9 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, TextInput, Image } from "react-native";
-import Constants from "expo-constants";
-import * as Permissions from "expo-permissions";
 import { Ionicons } from "@expo/vector-icons";
 import Fire from "../Fire";
 import * as ImagePicker from "expo-image-picker";
-
-const firebase = require("firebase");
-require("firebase/firestore");
+import UserPermissions from "../utilities/UserPermissions";
 
 export default class PostScreen extends React.Component {
     state = {
@@ -16,18 +12,8 @@ export default class PostScreen extends React.Component {
     };
 
     componentDidMount() {
-        this.getPhotoPermission();
+        UserPermissions.getCameraPermission;
     }
-
-    getPhotoPermission = async () => {
-        if (Constants.platform.ios) {
-            const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-
-            if (status != "granted") {
-                alert("We need permission to use your camera roll if you'd like to incude a photo.");
-            }
-        }
-    };
 
     handlePost = () => {
         Fire.shared
